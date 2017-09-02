@@ -27,13 +27,13 @@ cb             | ((function))        | Callback запускаемый посл�
 
 Parameter      | Type                | Details
 -------------- | ------------------- |:---------------------------------
-service        | ((string)) | A "well-known service" с которым Nodemailer знает как взаимодействовать (см. [this list of services](https://github.com/andris9/nodemailer-wellknown/blob/v0.1.5/README.md#supported-services))
+service        | ((string)) | "общеизвестные сервисы" с которым Nodemailer знает как взаимодействовать (см. [список сервисов](https://github.com/andris9/nodemailer-wellknown/blob/v0.1.5/README.md#supported-services))
 auth | ((object)) | объект аутентификации вида `{user:"...", pass:"..."}`
 transporter | ((object)) | Custom transporter passed directly to nodemailer.createTransport (overrides service/auth) (see [Available Transports](https://github.com/andris9/Nodemailer/blob/v1.3.4/README.md#available-transports))
-templateDir | ((string)) | Path to view templates relative to `sails.config.appPath` (defaults to `views/emailTemplates`)
-from | ((string)) | Default `from` email address
-testMode | ((boolean)) | Flag indicating whether the hook is in "test mode".  In test mode, email options and contents are written to a `.tmp/email.txt` file instead of being actually sent.  Defaults to `true`.
-alwaysSendTo | ((string)) | If set, all emails will be sent to this address regardless of the `to` option specified.  Good for testing live emails without worrying about accidentally spamming people.
+templateDir | ((string)) | путь к view шаблонам относительноo `sails.config.appPath` (по умолчанию `views/emailTemplates`)
+from | ((string)) | Дефолтный `from` email адрес
+testMode | ((boolean)) | Flag показывающий ято hook в режиме "test mode".  В test режиме, email опции и содержимое записываются в файл `.tmp/email.txt` вместо того чтобы действительно отправляться.  По умолчанию `true`.
+alwaysSendTo | ((string)) | Если установлено, все emails будут отсылаться на этот абресс независимо от опции `to` .  Это удобно для тестирования реальных emails без опасения заспамить случайно людей.
 
 #### Пример
 
@@ -50,11 +50,11 @@ module.exports.email = {
 
 ### Шаблоны
 
-Templates are generated using your configured Sails [View Engine](http://sailsjs.org/#!/documentation/concepts/Views/ViewEngines.html), allowing for multiple template engines and layouts.  If Sails Views are disabled, will fallback to EJS templates. To define a new email template, create a new folder with the template name inside your `templateDir` directory, and add an **html.ejs** file inside the folder (substituting .ejs for your template engine).  You may also add an optional `text.ejs` file; if none is provided, Nodemailer will attempt to create a text version of the email based on the html version.
+Шаблоны создаются с использованием сконфигурированнjuj Sails [View Engine](http://sailsjs.org/#!/documentation/concepts/Views/ViewEngines.html), что позволяет использовать несколько шаблонных движков и макетов.  Если Sails Views отключен, вернется к EJS templates. Для создания новогоw email шаблона, создайте новую папку с именем вашего шаблона в папке `templateDir`, и добавьте в нее файл **html.ejs** (substituting .ejs for your template engine).   файлВы также можете добавить необязательный файл `text.ejs`; если ни один не предоставлен, Nodemailer попытается создать текстовую версию электронной почты на основе html-версии.
 
 ### Пример
 
-Given the following **html.ejs** file contained in the folder **views/emailTemplates/testEmail**:
+Со следующим файлом **html.ejs** в папке **views/emailTemplates/testEmail**:
 
 ```
 <p>Дорогой <%=recipientName%>,</p>
@@ -63,7 +63,7 @@ Given the following **html.ejs** file contained in the folder **views/emailTempl
 <p>С Любовью,<br/><%=senderName%></p>
 ```
 
-executing the following command (after [configuring for your email service](https://github.com/balderdashy/sails-hook-email/#configuration) and turning off test mode) :
+выполнение следующей команды (после [конфигурирования вашего email сервиса](https://github.com/balderdashy/sails-hook-email/#configuration) и отключения test режима) :
 
 ```
 sails.hooks.email.send(
@@ -80,14 +80,14 @@ sails.hooks.email.send(
 )
 ```
 
-will result in the following email being sent to `joe@example.com`
+результатом будет следующий email отправленный по адресу `joe@example.com`
 
-> Dear Joe,
+> Дорогой Joe,
 >
-> *Thank you* for being a friend.
+> *Спасибоu* что ты друг.
 >
-> Love,
+> С любовью,
 >
 > Sue
 
-with an error being printed to the console if one occurred, otherwise "It worked!".
+с ошибкой, печатаемой на консоли, если произошла ошибка, или "It worked!".
