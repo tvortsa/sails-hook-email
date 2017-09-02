@@ -63,7 +63,7 @@ module.exports.email = {
 <p>С Любовью,<br/><%=senderName%></p>
 ```
 
-выполнение следующей команды (после [конфигурирования вашего email сервиса](https://github.com/balderdashy/sails-hook-email/#configuration) и отключения test режима) :
+выполнение следующей команды (после [конфигурирования вашего email сервиса](https://github.com/емщкеыф/sails-hook-email/edit/tvr_russian/#configuration) и отключения test режима) :
 
 ```
 sails.hooks.email.send(
